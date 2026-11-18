@@ -4,11 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { 
   Github, 
   Linkedin, 
-  Twitter, 
-  Instagram, 
-  Dribbble,
-  ArrowUp,
-  Heart
+  ArrowUp
 } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -18,11 +14,8 @@ const Footer = () => {
   const triggersRef = useRef<ScrollTrigger[]>([]);
 
   const socialLinks = [
-    { icon: Github, href: '#', label: 'GitHub' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Instagram, href: '#', label: 'Instagram' },
-    { icon: Dribbble, href: '#', label: 'Dribbble' },
+    { icon: Github, href: 'https://github.com/joy11122', label: 'GitHub' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/joy-haldar', label: 'LinkedIn' },
   ];
 
   const navLinks = [
@@ -103,6 +96,8 @@ const Footer = () => {
                   <a
                     key={index}
                     href={social.href}
+                    target="_blank"
+                    rel="noreferrer"
                     className="w-10 h-10 rounded-full glass flex items-center justify-center text-white/60 hover:text-topaz hover:glass-topaz transition-all duration-300"
                     aria-label={social.label}
                   >
@@ -144,7 +139,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
-                    href="tel:01904914544"
+                    href="tel:+8801904914544"
                     className="text-white/60 hover:text-topaz transition-colors duration-300"
                   >
                     01904914544
@@ -160,7 +155,7 @@ const Footer = () => {
           {/* Bottom Bar */}
           <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-white/40 text-sm flex items-center gap-1">
-              © 2025 Joyanta Halder. 
+              © {new Date().getFullYear()} Joyanta Halder. 
             </p>
             
             {/* Back to Top */}
