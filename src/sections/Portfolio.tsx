@@ -13,7 +13,7 @@ const projects = [
     description:
       'A Bangladesh-focused pet marketplace connecting customers, sellers and administrators through product discovery, secure checkout, vendor workspaces and order management.',
     image: '/projects/lovesone-preview.svg',
-    imageAlt: 'LOVESONE pet marketplace storefront preview',
+    imageAlt: 'Illustrative visual preview of the LOVESONE pet marketplace storefront',
     technologies: ['Next.js', 'TypeScript', 'MongoDB', 'Auth.js', 'SSLCommerz'],
     liveUrl: 'https://lovesone.vercel.app/',
     githubUrl: 'https://github.com/joy11122/lovesone',
@@ -25,7 +25,7 @@ const projects = [
     description:
       'A multi-tenant salon platform with independent salon workspaces, staff and service management, real-time slot protection, and customer appointment booking.',
     image: '/projects/multi-salon-preview.svg',
-    imageAlt: 'Multi-Salon premium salon booking platform preview',
+    imageAlt: 'Illustrative visual preview of the Multi-Salon booking platform',
     technologies: ['Next.js', 'TypeScript', 'MongoDB', 'Auth.js', 'Tailwind CSS'],
     liveUrl: 'https://multi-salon-pi.vercel.app/',
     githubUrl: 'https://github.com/joy11122/multi-salon',
@@ -37,7 +37,7 @@ const projects = [
     description:
       'An AI-powered analytics workspace that lets users connect PostgreSQL, MySQL and MongoDB, ask questions in natural language, inspect safe read-only results and export reports.',
     image: '/projects/ai-analytics-preview.svg',
-    imageAlt: 'AI analytics SaaS dashboard and natural-language query preview',
+    imageAlt: 'Illustrative visual preview of the AI analytics SaaS dashboard',
     technologies: ['Next.js', 'TypeScript', 'OpenAI', 'MongoDB', 'Stripe'],
     liveUrl: 'https://ai-analytics-saas-mu.vercel.app/',
     githubUrl: 'https://github.com/joy11122/database-querry',
@@ -130,7 +130,7 @@ const Portfolio = () => {
                     className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
                   />
                   <span className="absolute left-4 top-4 rounded-full border border-white/15 bg-black/55 px-3 py-1 text-[11px] font-semibold tracking-[0.16em] text-white/90 backdrop-blur">
-                    PROJECT {project.number}
+                    PROJECT {project.number} · VISUAL PREVIEW
                   </span>
                   <span className="absolute bottom-4 right-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-topaz text-black shadow-lg transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1">
                     <ArrowUpRight className="h-5 w-5" aria-hidden="true" />
