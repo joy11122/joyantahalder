@@ -51,6 +51,8 @@ function App() {
   // GSAP Animations Configuration
   // ========================================================
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
     // Initialize smooth scroll behavior
     const ctx = gsap.context(() => {
       // Global scroll-triggered animations for sections
