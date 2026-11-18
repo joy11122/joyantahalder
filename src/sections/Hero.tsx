@@ -11,6 +11,7 @@ const Hero = () => {
   const prismRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const ctx = gsap.context(() => {
       // Title animation - split text effect
       if (titleRef.current) {
