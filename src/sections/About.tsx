@@ -175,7 +175,7 @@ const About = () => {
 
               {/* Skills Tags */}
               <div className="reveal-item flex flex-wrap gap-3 mb-8">
-                {['Webflow', 'React', 'TypeScript', 'UI/UX', 'Animation', 'SEO'].map((skill) => (
+                {['Next.js', 'React', 'TypeScript', 'Node.js', 'MongoDB', 'UI/UX'].map((skill) => (
                   <span
                     key={skill}
                     className="glass px-4 py-2 rounded-full text-sm text-white/80 hover:glass-topaz hover:text-white transition-all duration-300"
