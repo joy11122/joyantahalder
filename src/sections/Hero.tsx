@@ -196,8 +196,8 @@ const Hero = () => {
               <div className="mt-16 grid grid-cols-3 gap-8">
                 {[
                   { value: '03', label: 'Featured Products' },
-                  { value: 'Full-Stack', label: 'Product Focus' },
-                  { value: 'End-to-End', label: 'Build Approach' },
+                  { value: 'UI + API', label: 'Product Focus' },
+                  { value: 'AI-Ready', label: 'Build Approach' },
                 ].map((stat, index) => (
                   <div key={index} className="float-element">
                     <div className="text-fluid-2xl font-display font-bold text-topaz neon-text">
