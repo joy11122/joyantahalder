@@ -45,6 +45,21 @@ const Navigation = () => {
       if (event.key === 'Escape') {
         setIsMenuOpen(false);
         menuButtonRef.current?.focus();
+        return;
+      }
+
+      if (event.key === 'Tab') {
+        const focusableLinks = linksRef.current?.querySelectorAll<HTMLAnchorElement>('a');
+        const firstLink = focusableLinks?.[0];
+        const lastLink = focusableLinks?.[focusableLinks.length - 1];
+
+        if (event.shiftKey && document.activeElement === firstLink) {
+          event.preventDefault();
+          lastLink?.focus();
+        } else if (!event.shiftKey && document.activeElement === lastLink) {
+          event.preventDefault();
+          firstLink?.focus();
+        }
       }
     };
 
@@ -71,6 +86,7 @@ const Navigation = () => {
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setIsMenuOpen(false);
+    menuButtonRef.current?.focus();
     const target = document.querySelector(href);
     if (target) {
       target.scrollIntoView({ behavior: 'smooth' });
@@ -141,13 +157,24 @@ const Navigation = () => {
       {/* Mobile Menu Overlay */}
       <div
         id="mobile-navigation"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobile navigation"
         aria-hidden={!isMenuOpen}
         inert={!isMenuOpen}
         className={`fixed inset-0 z-40 lg:hidden transition-all duration-500 ${
           isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       >
-        <div className="absolute inset-0 bg-black/90 backdrop-blur-xl" onClick={() => setIsMenuOpen(false)} />
+        <button
+          type="button"
+          aria-label="Close navigation menu"
+          onClick={() => {
+            setIsMenuOpen(false);
+            menuButtonRef.current?.focus();
+          }}
+          className="absolute inset-0 bg-black/90 backdrop-blur-xl"
+        />
         <div
           ref={linksRef}
           className="absolute inset-0 flex flex-col items-center justify-center gap-6"
