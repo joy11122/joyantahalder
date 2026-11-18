@@ -142,7 +142,7 @@ const Hero = () => {
               {/* Badge */}
               <div className="float-element inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-8">
                 <Sparkles className="w-4 h-4 text-topaz" />
-                <span className="text-sm text-white/80">Available for freelance work</span>
+                <span className="text-sm text-white/80">Building thoughtful digital products</span>
               </div>
 
               {/* Title */}
@@ -151,7 +151,7 @@ const Hero = () => {
                 className="font-display font-black text-fluid-4xl leading-none mb-6"
                 style={{ perspective: '1000px' }}
               >
-                <span className="word inline-block text-white">WEBFLOW</span>
+                <span className="word inline-block text-white">FULL-STACK</span>
                 <br />
                 <span className="word inline-block text-transparent bg-clip-text bg-gradient-to-r from-topaz via-golden to-topaz">
                   DEVELOPER
@@ -163,9 +163,8 @@ const Hero = () => {
                 ref={subtitleRef}
                 className="text-fluid-lg text-white/70 max-w-xl mb-10 leading-relaxed"
               >
-                I craft digital experiences that merge{' '}
-                <span className="text-topaz">art with functionality</span>. Specializing in
-                creating stunning, high-performance websites that leave lasting impressions.
+                I design and build{' '}
+                <span className="text-topaz">modern, reliable web applications</span> — from polished, responsive interfaces to secure APIs, databases and AI-powered product features.
               </p>
 
               {/* CTA Buttons */}
@@ -239,7 +238,7 @@ const Hero = () => {
                     </div>
                     <div>
                       <div className="text-white font-semibold">Joyanta Halder</div>
-                      <div className="text-white/60 text-sm">Webflow Expert</div>
+                      <div className="text-white/60 text-sm">Full-Stack Developer</div>
                     </div>
                   </div>
                 </div>
