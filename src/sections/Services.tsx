@@ -50,6 +50,7 @@ const Services = () => {
   ];
 
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const ctx = gsap.context(() => {
       // Cards entrance animation
       if (cardsRef.current) {
