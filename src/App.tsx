@@ -7,7 +7,6 @@ import About from './sections/About';
 import Skills from './sections/Skills';
 import Services from './sections/Services';
 import Portfolio from './sections/Portfolio';
-import Testimonials from './sections/Testimonials';
 import Blog from './sections/Blog';
 import CTA from './sections/CTA';
 import Footer from './sections/Footer';
@@ -102,7 +101,6 @@ function App() {
         <Skills />
         <Services />
         <Portfolio />
-        <Testimonials />
         <Blog />
         <CTA />
       </main>
