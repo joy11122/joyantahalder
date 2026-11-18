@@ -150,8 +150,8 @@ const About = () => {
               
               {/* Experience Card */}
               <div className="absolute bottom-8 left-8 glass-strong rounded-2xl p-6">
-                <div className="text-4xl font-display font-bold text-topaz mb-1">1+</div>
-                <div className="text-white/70 text-sm">Years of<br />Experience</div>
+                <div className="text-4xl font-display font-bold text-topaz mb-1">3</div>
+                <div className="text-white/70 text-sm">Featured<br />Products</div>
               </div>
             </div>
 
@@ -162,15 +162,15 @@ const About = () => {
               </h3>
               
               <p className="reveal-item text-white/70 text-fluid-base leading-relaxed mb-6">
-                With over 5 years of experience in web development, I specialize in creating 
-                stunning, high-performance websites using Webflow and modern technologies. My 
-                passion lies in bridging the gap between design and functionality.
+                I’m a developer focused on building practical, user-friendly web products. My work spans 
+                responsive interfaces, full-stack application development, database-backed features, 
+                and AI-powered experiences. I enjoy turning product ideas into reliable software.
               </p>
               
               <p className="reveal-item text-white/70 text-fluid-base leading-relaxed mb-8">
-                I believe every pixel matters. From concept to deployment, I ensure each project 
-                receives the attention it deserves, delivering results that not only meet but 
-                exceed expectations.
+                I care about the complete product experience—from clear interface design and accessible 
+                interactions to maintainable code, thoughtful data models, and dependable deployment. 
+                I keep learning through hands-on projects and continuous improvement.
               </p>
 
               {/* Skills Tags */}
