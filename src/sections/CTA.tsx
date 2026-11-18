@@ -144,7 +144,7 @@ const CTA = () => {
                   icon: Mail,
                   label: 'Email',
                   value: 'joyhaldar112233@gmail.com',
-                  href: 'mailto: joyhaldar112233@gmail.com',
+                  href: 'mailto:joyhaldar112233@gmail.com',
                 },
                 {
                   icon: Phone,
@@ -156,12 +156,14 @@ const CTA = () => {
                   icon: MapPin,
                   label: 'Location',
                   value: 'Khulna, Bangladesh',
-                  href: '#',
+                  href: 'https://www.google.com/maps/search/?api=1&query=Khulna%2C%20Bangladesh',
                 },
               ].map((contact, index) => (
                 <a
                   key={index}
                   href={contact.href}
+                  target={contact.label === 'Location' ? '_blank' : undefined}
+                  rel={contact.label === 'Location' ? 'noreferrer' : undefined}
                   className="card-glass group hover:glass-strong transition-all duration-500"
                 >
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-topaz/20 to-golden/20 flex items-center justify-center mb-4 mx-auto group-hover:from-topaz/40 group-hover:to-golden/40 transition-all duration-300">
