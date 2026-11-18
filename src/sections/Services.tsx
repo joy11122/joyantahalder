@@ -120,7 +120,7 @@ const Services = () => {
             {services.map((service, index) => (
               <div
                 key={index}
-                className={`service-card relative group cursor-pointer`}
+                className={`service-card relative group`}
                 onMouseEnter={() => setActiveCard(index)}
                 onMouseLeave={() => setActiveCard(null)}
               >
@@ -177,21 +177,6 @@ const Services = () => {
                       ))}
                     </div>
 
-                    {/* CTA */}
-                    <div 
-                      className={`
-                        flex items-center gap-2 text-topaz font-medium transition-all duration-300
-                        ${activeCard === index ? 'translate-x-2' : ''}
-                      `}
-                    >
-                      <span>Learn More</span>
-                      <ArrowRight 
-                        className={`
-                          w-4 h-4 transition-transform duration-300
-                          ${activeCard === index ? 'translate-x-1' : ''}
-                        `} 
-                      />
-                    </div>
                   </div>
 
                   {/* Corner Decoration */}
