@@ -49,6 +49,8 @@ const Portfolio = () => {
   const projectsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
     const ctx = gsap.context(() => {
       if (!projectsRef.current) return;
 

@@ -7,8 +7,6 @@ import About from './sections/About';
 import Skills from './sections/Skills';
 import Services from './sections/Services';
 import Portfolio from './sections/Portfolio';
-import Testimonials from './sections/Testimonials';
-import Blog from './sections/Blog';
 import CTA from './sections/CTA';
 import Footer from './sections/Footer';
 
@@ -19,40 +17,11 @@ function App() {
   const triggersRef = useRef<ScrollTrigger[]>([]);
 
   // ========================================================
-  // Meta Pixel Initialization & PageView Tracking
-  // ========================================================
-  useEffect(() => {
-    // Check if fbq is already initialized to prevent duplicate scripts
-    if (!(window as any).fbq) {
-      !(function (f: any, b: any, e: any, v: any, n: any, t: any, s: any) {
-        if (f.fbq) return;
-        n = f.fbq = function () {
-          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-        };
-        if (!f._fbq) f._fbq = n;
-        n.push = n;
-        n.loaded = !0;
-        n.version = '2.0';
-        n.queue = [];
-        t = b.createElement(e);
-        t.async = !0;
-        t.src = v;
-        s = b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t, s);
-      })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-
-      // Initialize with your unique Pixel ID
-      (window as any).fbq('init', '1378447597539400');
-    }
-
-    // Fire a PageView event automatically on component mount
-    (window as any).fbq('track', 'PageView');
-  }, []);
-
-  // ========================================================
   // GSAP Animations Configuration
   // ========================================================
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
     // Initialize smooth scroll behavior
     const ctx = gsap.context(() => {
       // Global scroll-triggered animations for sections
@@ -92,18 +61,23 @@ function App() {
       {/* Background Gradient Mesh */}
       <div className="fixed inset-0 gradient-mesh pointer-events-none z-0" />
       
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-topaz focus:px-5 focus:py-3 focus:font-semibold focus:text-black"
+      >
+        Skip to content
+      </a>
+
       {/* Navigation */}
       <Navigation />
-      
+
       {/* Main Content */}
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10">
         <Hero />
         <About />
         <Skills />
         <Services />
         <Portfolio />
-        <Testimonials />
-        <Blog />
         <CTA />
       </main>
       

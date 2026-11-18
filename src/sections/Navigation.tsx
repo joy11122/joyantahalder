@@ -7,6 +7,7 @@ const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
   const linksRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   const navLinks = [
     { name: 'Home', href: '#hero' },
@@ -27,6 +28,8 @@ const Navigation = () => {
   }, []);
 
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
     // Entrance animation
     if (navRef.current) {
       gsap.fromTo(
@@ -38,6 +41,39 @@ const Navigation = () => {
   }, []);
 
   useEffect(() => {
+    if (!isMenuOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsMenuOpen(false);
+        menuButtonRef.current?.focus();
+        return;
+      }
+
+      if (event.key === 'Tab') {
+        const focusableLinks = linksRef.current?.querySelectorAll<HTMLAnchorElement>('a');
+        const firstLink = focusableLinks?.[0];
+        const lastLink = focusableLinks?.[focusableLinks.length - 1];
+
+        if (event.shiftKey && document.activeElement === firstLink) {
+          event.preventDefault();
+          lastLink?.focus();
+        } else if (!event.shiftKey && document.activeElement === lastLink) {
+          event.preventDefault();
+          firstLink?.focus();
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    linksRef.current?.querySelector<HTMLAnchorElement>('a')?.focus();
+
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isMenuOpen]);
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
     // Animate links when menu opens
     if (linksRef.current) {
       const links = linksRef.current.querySelectorAll('a');
@@ -54,6 +90,7 @@ const Navigation = () => {
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setIsMenuOpen(false);
+    menuButtonRef.current?.focus();
     const target = document.querySelector(href);
     if (target) {
       target.scrollIntoView({ behavior: 'smooth' });
@@ -63,6 +100,7 @@ const Navigation = () => {
   return (
     <>
       <nav
+        aria-label="Main navigation"
         ref={navRef}
         className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ${
           isScrolled ? 'top-4' : 'top-6'
@@ -109,9 +147,12 @@ const Navigation = () => {
 
           {/* Mobile Menu Button */}
           <button
+            ref={menuButtonRef}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="lg:hidden p-2 text-white hover:text-topaz transition-colors"
-            aria-label="Toggle menu"
+            aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-navigation"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -120,11 +161,25 @@ const Navigation = () => {
 
       {/* Mobile Menu Overlay */}
       <div
+        id="mobile-navigation"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobile navigation"
+        aria-hidden={!isMenuOpen}
+        inert={!isMenuOpen}
         className={`fixed inset-0 z-40 lg:hidden transition-all duration-500 ${
           isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       >
-        <div className="absolute inset-0 bg-black/90 backdrop-blur-xl" onClick={() => setIsMenuOpen(false)} />
+        <button
+          type="button"
+          aria-label="Close navigation menu"
+          onClick={() => {
+            setIsMenuOpen(false);
+            menuButtonRef.current?.focus();
+          }}
+          className="absolute inset-0 bg-black/90 backdrop-blur-xl"
+        />
         <div
           ref={linksRef}
           className="absolute inset-0 flex flex-col items-center justify-center gap-6"

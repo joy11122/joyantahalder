@@ -21,35 +21,36 @@ const Services = () => {
   const services = [
     {
       icon: Monitor,
-      title: 'Web Design',
-      description: 'Creating visually stunning, user-centric designs that captivate audiences and drive engagement.',
-      features: ['UI/UX Design', 'Responsive Design', 'Prototype', 'Design Systems'],
+      title: 'Product UI/UX',
+      description: 'Designing clear, responsive interfaces that make complex product workflows easier to use.',
+      features: ['Interface Design', 'Responsive Layouts', 'Prototyping', 'Design Systems'],
       color: 'from-topaz to-golden',
     },
     {
       icon: Code2,
-      title: 'Web Development',
-      description: 'Building robust, scalable websites with clean code and cutting-edge technologies.',
-      features: ['Webflow Development', 'Custom Code', 'CMS Integration', 'E-commerce'],
+      title: 'Full-Stack Development',
+      description: 'Building database-backed web applications with thoughtful architecture and maintainable code.',
+      features: ['Next.js & React', 'TypeScript', 'API Development', 'MongoDB'],
       color: 'from-golden to-topaz',
     },
     {
       icon: Palette,
-      title: 'Figma To Webflow',
-      description: 'Pixel-perfect Figma to Webflow conversion, fully responsive.',
-      features: ['FigmaToWebflow', 'Pixel Perfect', 'Visual Identity', 'Brand Guidelines'],
+      title: 'E-commerce Solutions',
+      description: 'Creating customer-facing shopping experiences with practical commerce workflows.',
+      features: ['Product Catalogues', 'Shopping Carts', 'Checkout Flows', 'Order Management'],
       color: 'from-topaz to-golden',
     },
     {
       icon: Megaphone,
-      title: 'Digital Marketing',
-      description: 'Strategic marketing solutions to boost your online presence and conversions.',
-      features: ['SEO Optimization', 'Content Strategy', 'Analytics', 'Social Media'],
+      title: 'SaaS & AI Features',
+      description: 'Developing useful product capabilities, from role-aware dashboards to AI-assisted workflows.',
+      features: ['Dashboards', 'Authentication', 'AI Integration', 'Data Workflows'],
       color: 'from-golden to-topaz',
     },
   ];
 
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const ctx = gsap.context(() => {
       // Cards entrance animation
       if (cardsRef.current) {
@@ -106,7 +107,7 @@ const Services = () => {
               Services <span className="text-transparent bg-clip-text bg-gradient-to-r from-topaz to-golden">& Solutions</span>
             </h2>
             <p className="text-white/60 text-fluid-base max-w-2xl mx-auto">
-              Comprehensive digital services tailored to elevate your brand and drive results
+              Focused development services for modern web products, from interface to backend
             </p>
           </div>
 
@@ -119,7 +120,7 @@ const Services = () => {
             {services.map((service, index) => (
               <div
                 key={index}
-                className={`service-card relative group cursor-pointer`}
+                className={`service-card relative group`}
                 onMouseEnter={() => setActiveCard(index)}
                 onMouseLeave={() => setActiveCard(null)}
               >
@@ -176,21 +177,6 @@ const Services = () => {
                       ))}
                     </div>
 
-                    {/* CTA */}
-                    <div 
-                      className={`
-                        flex items-center gap-2 text-topaz font-medium transition-all duration-300
-                        ${activeCard === index ? 'translate-x-2' : ''}
-                      `}
-                    >
-                      <span>Learn More</span>
-                      <ArrowRight 
-                        className={`
-                          w-4 h-4 transition-transform duration-300
-                          ${activeCard === index ? 'translate-x-1' : ''}
-                        `} 
-                      />
-                    </div>
                   </div>
 
                   {/* Corner Decoration */}

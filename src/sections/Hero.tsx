@@ -11,6 +11,7 @@ const Hero = () => {
   const prismRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const ctx = gsap.context(() => {
       // Title animation - split text effect
       if (titleRef.current) {
@@ -195,9 +196,9 @@ const Hero = () => {
               {/* Stats */}
               <div className="mt-16 grid grid-cols-3 gap-8">
                 {[
-                  { value: '1+', label: 'Years Experience' },
-                  { value: '10+', label: 'Projects Completed' },
-                  { value: '03+', label: 'Happy Clients' },
+                  { value: '03', label: 'Featured Products' },
+                  { value: 'UI + API', label: 'Product Focus' },
+                  { value: 'AI-Ready', label: 'Build Approach' },
                 ].map((stat, index) => (
                   <div key={index} className="float-element">
                     <div className="text-fluid-2xl font-display font-bold text-topaz neon-text">
@@ -245,8 +246,8 @@ const Hero = () => {
 
                 {/* Experience Badge */}
                 <div className="float-element absolute -top-4 -right-4 glass-strong rounded-full w-24 h-24 flex flex-col items-center justify-center">
-                  <span className="text-2xl font-bold text-topaz">1+</span>
-                  <span className="text-xs text-white/60">Years</span>
+                  <span className="text-2xl font-bold text-topaz">Build</span>
+                  <span className="text-xs text-white/60">With Purpose</span>
                 </div>
               </div>
             </div>
