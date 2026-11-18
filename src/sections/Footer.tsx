@@ -28,6 +28,7 @@ const Footer = () => {
   ];
 
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const ctx = gsap.context(() => {
       // Footer reveal animation
       const trigger = ScrollTrigger.create({
