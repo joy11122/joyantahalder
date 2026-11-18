@@ -28,6 +28,8 @@ const Navigation = () => {
   }, []);
 
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
     // Entrance animation
     if (navRef.current) {
       gsap.fromTo(
@@ -70,6 +72,8 @@ const Navigation = () => {
   }, [isMenuOpen]);
 
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
     // Animate links when menu opens
     if (linksRef.current) {
       const links = linksRef.current.querySelectorAll('a');
