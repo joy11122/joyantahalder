@@ -100,6 +100,7 @@ const Navigation = () => {
   return (
     <>
       <nav
+        aria-label="Main navigation"
         ref={navRef}
         className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ${
           isScrolled ? 'top-4' : 'top-6'
