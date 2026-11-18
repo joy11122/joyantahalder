@@ -36,6 +36,7 @@ const About = () => {
   ];
 
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const ctx = gsap.context(() => {
       // Image parallax and rotation
       if (imageRef.current) {
