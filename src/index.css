@@ -44,6 +44,7 @@
   
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
   }
   
   body {
@@ -54,6 +55,11 @@
   ::selection {
     background: rgba(230, 165, 32, 0.3);
     color: #FFF8E7;
+  }
+
+  :focus-visible {
+    outline: 2px solid #E6A520;
+    outline-offset: 4px;
   }
 }
 
