@@ -25,6 +25,7 @@ const Skills = () => {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const ctx = gsap.context(() => {
       gsap.fromTo(
         '.skill-card',
