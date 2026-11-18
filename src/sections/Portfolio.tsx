@@ -1,232 +1,198 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ExternalLink, Github, Eye } from 'lucide-react';
+import { ArrowUpRight, Github, Globe2 } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
+
+const projects = [
+  {
+    number: '01',
+    title: 'LOVESONE',
+    category: 'Multi-vendor Pet Marketplace',
+    description:
+      'A Bangladesh-focused pet marketplace connecting customers, sellers and administrators through product discovery, secure checkout, vendor workspaces and order management.',
+    image: '/projects/lovesone-preview.svg',
+    imageAlt: 'LOVESONE pet marketplace storefront preview',
+    technologies: ['Next.js', 'TypeScript', 'MongoDB', 'Auth.js', 'SSLCommerz'],
+    liveUrl: 'https://lovesone.vercel.app/',
+    githubUrl: 'https://github.com/joy11122/lovesone',
+  },
+  {
+    number: '02',
+    title: 'MULTI-SALON',
+    category: 'Salon Management & Booking Platform',
+    description:
+      'A multi-tenant salon platform with independent salon workspaces, staff and service management, real-time slot protection, and customer appointment booking.',
+    image: '/projects/multi-salon-preview.svg',
+    imageAlt: 'Multi-Salon premium salon booking platform preview',
+    technologies: ['Next.js', 'TypeScript', 'MongoDB', 'Auth.js', 'Tailwind CSS'],
+    liveUrl: 'https://multi-salon-pi.vercel.app/',
+    githubUrl: 'https://github.com/joy11122/multi-salon',
+  },
+  {
+    number: '03',
+    title: 'AI ANALYTICS SAAS',
+    category: 'Natural-language Database Analytics',
+    description:
+      'An AI-powered analytics workspace that lets users connect PostgreSQL, MySQL and MongoDB, ask questions in natural language, inspect safe read-only results and export reports.',
+    image: '/projects/ai-analytics-preview.svg',
+    imageAlt: 'AI analytics SaaS dashboard and natural-language query preview',
+    technologies: ['Next.js', 'TypeScript', 'OpenAI', 'MongoDB', 'Stripe'],
+    liveUrl: 'https://ai-analytics-saas-mu.vercel.app/',
+    githubUrl: 'https://github.com/joy11122/database-querry',
+  },
+];
 
 const Portfolio = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const projectsRef = useRef<HTMLDivElement>(null);
-  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
-  const triggersRef = useRef<ScrollTrigger[]>([]);
-
-  const projects = [
-    {
-      title: 'Authorial',
-      category: 'Brand Identity & Web Design',
-      description: 'A complete brand overhaul for a luxury fashion retailer, featuring an elegant e-commerce experience.',
-      image: '/authorial.png',
-      tags: ['Webflow', 'E-commerce', 'Branding'],
-      link: 'https://authorial.webflow.io/',
-      github: 'https://authorial.webflow.io/',
-    },
-    {
-      title: 'Maxorin',
-      category: 'E-commerce Platform',
-      description: 'Premium jewelry e-commerce platform with immersive product showcases and seamless checkout.',
-      image: '/maxorin.png',
-      tags: ['Webflow', 'Shopify', 'Animation'],
-      link: 'https://maxorin.webflow.io/',
-      github: 'https://maxorin.webflow.io/',
-    },
-    {
-      title: 'Portify',
-      category: 'Portfolio',
-      description: 'Analytics dashboard with real-time data visualization and intuitive user interface.',
-      image: '/portify.png',
-      tags: ['Webflow', 'gsap', 'figma'],
-      link: 'https://portifypro.webflow.io/',
-      github: 'https://portifypro.webflow.io/',
-    },
-    {
-      title: 'Puva',
-      category: 'Service',
-      description: 'High-fashion brand website with editorial design and immersive storytelling.',
-      image: '/puva.png',
-      tags: ['Webflow', 'GSAP', 'CMS'],
-      link: 'https://puva.webflow.io/',
-      github: 'https://puva.webflow.io/',
-    },
-  ];
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Projects entrance animation
-      if (projectsRef.current) {
-        const cards = projectsRef.current.querySelectorAll('.project-card');
-        
-        const trigger = ScrollTrigger.create({
-          trigger: projectsRef.current,
-          start: 'top 80%',
-          onEnter: () => {
-            gsap.fromTo(
-              cards,
-              { y: 100, opacity: 0, scale: 0.95 },
-              {
-                y: 0,
-                opacity: 1,
-                scale: 1,
-                duration: 1,
-                stagger: 0.2,
-                ease: 'power3.out',
-              }
-            );
+      if (!projectsRef.current) return;
+
+      const cards = projectsRef.current.querySelectorAll<HTMLElement>('.project-card');
+      gsap.fromTo(
+        cards,
+        { y: 36, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.75,
+          stagger: 0.12,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: projectsRef.current,
+            start: 'top 82%',
+            once: true,
           },
-          once: true,
-        });
-        triggersRef.current.push(trigger);
-      }
+        }
+      );
     }, sectionRef);
 
-    return () => {
-      triggersRef.current.forEach((trigger) => trigger.kill());
-      triggersRef.current = [];
-      ctx.revert();
-    };
+    return () => ctx.revert();
   }, []);
 
   return (
     <section
       id="portfolio"
       ref={sectionRef}
-      className="relative py-32 overflow-hidden"
+      className="relative overflow-hidden py-24 sm:py-28 lg:py-32"
+      aria-labelledby="portfolio-heading"
     >
-      {/* Background */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-topaz/30 to-transparent" />
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-topaz/30 to-transparent" />
-      </div>
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-topaz/30 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-topaz/30 to-transparent" />
 
-      <div className="relative z-10 section-padding">
-        <div className="max-w-7xl mx-auto">
-          {/* Section Header */}
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-16">
+      <div className="section-padding relative z-10">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-12 flex flex-col gap-5 md:mb-16 md:flex-row md:items-end md:justify-between">
             <div>
-              <span className="inline-block text-topaz text-sm font-semibold tracking-widest uppercase mb-4">
-                Selected Works
+              <span className="mb-4 inline-block text-sm font-semibold uppercase tracking-[0.22em] text-topaz">
+                Selected work
               </span>
-              <h2 className="font-display font-bold text-fluid-3xl text-white">
-                Recent <span className="text-transparent bg-clip-text bg-gradient-to-r from-topaz to-golden">Projects</span>
+              <h2
+                id="portfolio-heading"
+                className="font-display text-fluid-3xl font-bold text-white"
+              >
+                Recent{' '}
+                <span className="bg-gradient-to-r from-topaz to-golden bg-clip-text text-transparent">
+                  Projects
+                </span>
               </h2>
             </div>
-            <p className="text-white/60 max-w-md mt-4 md:mt-0">
-              A curated selection of projects that showcase my expertise in design and development.
+            <p className="max-w-lg text-sm leading-7 text-white/60 sm:text-base">
+              A closer look at the products I have been designing and building — from commerce
+              and booking workflows to AI-powered data tools.
             </p>
           </div>
 
-          {/* Projects Grid */}
-          <div 
-            ref={projectsRef}
-            className="grid md:grid-cols-2 gap-8"
-          >
-            {projects.map((project, index) => (
-              <div
-                key={index}
-                className="project-card group relative"
-                onMouseEnter={() => setHoveredProject(index)}
-                onMouseLeave={() => setHoveredProject(null)}
+          <div ref={projectsRef} className="grid gap-7 md:grid-cols-2 xl:grid-cols-3">
+            {projects.map((project) => (
+              <article
+                key={project.number}
+                className="project-card group flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.035] transition duration-500 hover:-translate-y-1 hover:border-topaz/40 hover:bg-white/[0.055]"
               >
-                <div className="relative rounded-3xl overflow-hidden">
-                  {/* Image Container */}
-                  <div className="relative aspect-[16/10] overflow-hidden">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className={`
-                        w-full h-full object-cover transition-all duration-700
-                        ${hoveredProject === index ? 'scale-110' : 'scale-100'}
-                      `}
-                    />
-                    
-                    {/* Overlay */}
-                    <div 
-                      className={`
-                        absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent transition-opacity duration-500
-                        ${hoveredProject === index ? 'opacity-90' : 'opacity-60'}
-                      `}
-                    />
-
-                    {/* Content Overlay */}
-                    <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                      {/* Tags */}
-                      <div 
-                        className={`
-                          flex flex-wrap gap-2 mb-4 transition-all duration-500
-                          ${hoveredProject === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
-                        `}
-                      >
-                        {project.tags.map((tag, tIndex) => (
-                          <span
-                            key={tIndex}
-                            className="text-xs text-white/80 bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-
-                      {/* Title & Description */}
-                      <h3 className="font-display font-bold text-2xl md:text-3xl text-white mb-2">
-                        {project.title}
-                      </h3>
-                      <p className="text-topaz text-sm font-medium mb-3">
-                        {project.category}
-                      </p>
-                      <p 
-                        className={`
-                          text-white/70 text-sm max-w-md transition-all duration-500
-                          ${hoveredProject === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
-                        `}
-                      >
-                        {project.description}
-                      </p>
-
-                      {/* Action Buttons */}
-                      <div 
-                        className={`
-                          flex gap-4 mt-6 transition-all duration-500
-                          ${hoveredProject === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
-                        `}
-                      >
-                        <a
-                          href={project.link}
-                          className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black text-sm font-medium hover:bg-topaz transition-colors duration-300"
-                        >
-                          <Eye className="w-4 h-4" />
-                          View Live
-                        </a>
-                        <a
-                          href={project.github}
-                          className="flex items-center gap-2 px-5 py-2.5 rounded-full glass text-white text-sm font-medium hover:glass-strong transition-all duration-300"
-                        >
-                          <Github className="w-4 h-4" />
-                          Code
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Border Glow */}
-                  <div 
-                    className={`
-                      absolute inset-0 rounded-3xl border-2 transition-all duration-500 pointer-events-none
-                      ${hoveredProject === index ? 'border-topaz/50 shadow-neon' : 'border-white/10'}
-                    `}
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative block aspect-[16/10] overflow-hidden bg-black/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-topaz"
+                  aria-label={`Open live ${project.title} project`}
+                >
+                  <img
+                    src={project.image}
+                    alt={project.imageAlt}
+                    width="1200"
+                    height="750"
+                    loading="lazy"
+                    decoding="async"
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
                   />
+                  <span className="absolute left-4 top-4 rounded-full border border-white/15 bg-black/55 px-3 py-1 text-[11px] font-semibold tracking-[0.16em] text-white/90 backdrop-blur">
+                    PROJECT {project.number}
+                  </span>
+                  <span className="absolute bottom-4 right-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-topaz text-black shadow-lg transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1">
+                    <ArrowUpRight className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                </a>
+
+                <div className="flex flex-1 flex-col p-6 sm:p-7">
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-topaz">
+                    {project.category}
+                  </p>
+                  <h3 className="mb-3 font-display text-2xl font-bold tracking-tight text-white">
+                    {project.title}
+                  </h3>
+                  <p className="mb-6 flex-1 text-sm leading-7 text-white/65">
+                    {project.description}
+                  </p>
+
+                  <ul className="mb-6 flex flex-wrap gap-2" aria-label={`${project.title} technologies`}>
+                    {project.technologies.map((technology) => (
+                      <li
+                        key={technology}
+                        className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] font-medium text-white/70"
+                      >
+                        {technology}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="flex flex-wrap items-center gap-3 border-t border-white/10 pt-5">
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex min-h-11 flex-1 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-topaz to-golden px-4 py-2.5 text-sm font-semibold text-black transition hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-topaz focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                    >
+                      <Globe2 className="h-4 w-4" aria-hidden="true" />
+                      Live demo
+                    </a>
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex min-h-11 flex-1 items-center justify-center gap-2 rounded-full border border-white/15 px-4 py-2.5 text-sm font-semibold text-white transition hover:border-topaz/60 hover:text-topaz focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-topaz"
+                    >
+                      <Github className="h-4 w-4" aria-hidden="true" />
+                      Source code
+                    </a>
+                  </div>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
 
-          {/* View All CTA */}
-          <div className="mt-16 text-center">
+          <div className="mt-12 text-center">
             <a
-              href="#"
-              className="inline-flex items-center gap-3 text-white/60 hover:text-topaz transition-colors duration-300 group"
+              href="https://github.com/joy11122?tab=repositories"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white/75 transition hover:border-topaz/50 hover:text-topaz focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-topaz"
             >
-              <span className="text-lg">View All Projects</span>
-              <ExternalLink className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
+              Explore all repositories
+              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
             </a>
           </div>
         </div>
