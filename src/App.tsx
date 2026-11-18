@@ -61,11 +61,18 @@ function App() {
       {/* Background Gradient Mesh */}
       <div className="fixed inset-0 gradient-mesh pointer-events-none z-0" />
       
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-topaz focus:px-5 focus:py-3 focus:font-semibold focus:text-black"
+      >
+        Skip to content
+      </a>
+
       {/* Navigation */}
       <Navigation />
-      
+
       {/* Main Content */}
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10">
         <Hero />
         <About />
         <Skills />
